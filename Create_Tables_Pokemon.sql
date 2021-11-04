@@ -1,11 +1,11 @@
-CREATE TABLE Capacities (
+CREATE TABLE capacities (
 	id int not null primary key identity(1,1),
 	name varchar(255) not null,
 	power int not null,
 	type varchar(255) not null
 );
 
-CREATE TABLE Pokemon (
+CREATE TABLE pokemon (
 	id int not null primary key identity(1,1),
 	name varchar(255) not null,
 	life_points int not null,

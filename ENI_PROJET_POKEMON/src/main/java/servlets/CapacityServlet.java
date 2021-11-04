@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
+import beans.TypesEnum;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,6 +27,8 @@ public class CapacityServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setAttribute("types", TypesEnum.values());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/capacity.jsp").forward(request, response);
 	}
 

@@ -1,7 +1,12 @@
 package beans;
 
 public enum TypesEnum {
-	PLANT,
-	FIRE,
-	WATER
+	PLANT("plant"),
+	FIRE("fire"),
+	WATER("water");
+
+	TypesEnum(String string) {
+	}
+	
+	
 }

@@ -1,13 +1,19 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import beans.Capacity;
 import beans.TypesEnum;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import services.CapacityService;
+import services.CapacityServiceImpl;
 
 /**
  * Servlet implementation class CapacityServlet
@@ -27,8 +33,13 @@ public class CapacityServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		
-		request.setAttribute("types", TypesEnum.values());
+		if( (List<Capacity>) session.getAttribute("capacityList") == null) {
+			List<Capacity> capacityList = new ArrayList<Capacity>();
+			session.setAttribute("capacityList", capacityList);
+		}
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/capacity.jsp").forward(request, response);
 	}
 
@@ -36,7 +47,28 @@ public class CapacityServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		Capacity capacity = new Capacity();
+		HttpSession session = request.getSession();
+		List<Capacity> capacityList = (List<Capacity>) session.getAttribute("capacityList");
+		CapacityService capacityService = new CapacityServiceImpl();
+		
+		capacity.setName(request.getParameter("name"));
+		capacity.setPower(Integer.valueOf(request.getParameter("power")));
+		System.out.println("capacityType de la requette : " + request.getParameter("capacityType"));
+		String type = request.getParameter("capacityType");
+		
+		System.out.println(type);
+		
+		capacity.setType(TypesEnum.valueOf(type));
+	
+		
+		//System.out.println(capacity);
+		capacityService.create(capacity);
+		
+		capacityList.add(capacity);
+		
+		//TODO: condition pour désactiver le lien de création de pokémon avant d'avoir 5? capacités minimum ?
+		
 		doGet(request, response);
 	}
 

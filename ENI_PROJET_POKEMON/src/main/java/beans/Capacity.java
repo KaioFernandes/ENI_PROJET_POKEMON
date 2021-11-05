@@ -1,15 +1,15 @@
 package beans;
 
-public class Capacities {
+public class Capacity {
 	
 	//Attributes
 	int id;
 	String name;
 	int power;
-	String type;
+	TypesEnum type;
 	
 	//Constructor
-	public Capacities(int id, String name, int power, String type) {
+	public Capacity(int id, String name, int power, TypesEnum type) {
 		this.id = id;
 		this.name = name;
 		this.power = power;
@@ -18,14 +18,14 @@ public class Capacities {
 
 	
 	//Constructor without id
-	public Capacities(String name, int power, String type) {
+	public Capacity(String name, int power, TypesEnum type) {
 		this.name = name;
 		this.power = power;
 		this.type = type;
 	}
 
 	//Constructor empty
-	public Capacities() {
+	public Capacity() {
 	}
 
 
@@ -62,13 +62,13 @@ public class Capacities {
 	}
 
 
-	public String getType() {
+	public TypesEnum getType() {
 		return type;
 	}
 
 
-	public void setType(String type) {
-		this.type = type;
+	public void setType(TypesEnum typesEnum) {
+		this.type = typesEnum;
 	}
 
 
@@ -76,7 +76,7 @@ public class Capacities {
 	//toString
 	@Override
 	public String toString() {
-		return "Capacities [id=" + id + ", name=" + name + ", power=" + power + ", type=" + type + "]";
+		return "Capacity [id=" + id + ", name=" + name + ", power=" + power + ", type=" + type.toString() + "]";
 	}
 	
 	

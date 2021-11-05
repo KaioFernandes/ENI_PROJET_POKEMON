@@ -40,8 +40,11 @@ public class Pokemon {
 		this.type = type;
 		this.capacity = capacity;
 	}
+	
 
 	
+
+
 	//Constructor without id
 	public Pokemon(String name, int lifePoints, int attackStrength, int defenceStrength, int speed, TypesEnum type,
 			Capacity capacity) {
@@ -53,7 +56,7 @@ public class Pokemon {
 		this.type = type;
 		this.capacity = capacity;
 	}
-
+	
 
 	
 	//Constructor empty

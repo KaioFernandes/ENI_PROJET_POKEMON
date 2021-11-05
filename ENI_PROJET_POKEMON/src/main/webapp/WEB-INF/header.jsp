@@ -8,7 +8,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="pokemon">
+				<a href="create-pokemon">
 					<fmt:message key="msg.header.pokemons"></fmt:message>
 				</a>
 			</li>
@@ -21,7 +21,7 @@
 				<a href="quit">
 					<fmt:message key="msg.header.quit"></fmt:message>
 				</a>
-			</li>
+		
 		</ul>
 	</nav>
 </header>

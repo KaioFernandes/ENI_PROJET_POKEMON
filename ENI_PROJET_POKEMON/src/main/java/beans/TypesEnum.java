@@ -7,6 +7,4 @@ public enum TypesEnum {
 
 	TypesEnum(String string) {
 	}
-	
-	
 }

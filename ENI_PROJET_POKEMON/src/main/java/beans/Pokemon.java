@@ -3,18 +3,34 @@ package beans;
 public class Pokemon {
 	
 	//Attributes
-	int id;
-	String name;
-	int lifePoints;
-	int attackStrength;
-	int defenceStrength;
-	int speed;
-	String type;
-	int capacity;
+	private int id;
+	private String name;
+	private int lifePoints;
+	private int attackStrength;
+	private int defenceStrength;
+	private int speed;
+	private TypesEnum type;
+	private Capacity capacity;
+	private int idCapacity;
 	
+	
+	//Constructeur idCapacity
+	public Pokemon(String name, int lifePoints, int attackStrength, int defenceStrength, int speed, TypesEnum type,
+			int idCapacity) {
+		super();
+		this.name = name;
+		this.lifePoints = lifePoints;
+		this.attackStrength = attackStrength;
+		this.defenceStrength = defenceStrength;
+		this.speed = speed;
+		this.type = type;
+		this.idCapacity = idCapacity;
+	}
+
+
 	//Constructor
-	public Pokemon(int id, String name, int lifePoints, int attackStrength, int defenceStrength, int speed, String type,
-			int capacity) {
+	public Pokemon(int id, String name, int lifePoints, int attackStrength, int defenceStrength, int speed, TypesEnum type,
+			Capacity capacity) {
 		this.id = id;
 		this.name = name;
 		this.lifePoints = lifePoints;
@@ -24,11 +40,14 @@ public class Pokemon {
 		this.type = type;
 		this.capacity = capacity;
 	}
+	
 
 	
+
+
 	//Constructor without id
-	public Pokemon(String name, int lifePoints, int attackStrength, int defenceStrength, int speed, String type,
-			int capacity) {
+	public Pokemon(String name, int lifePoints, int attackStrength, int defenceStrength, int speed, TypesEnum type,
+			Capacity capacity) {
 		this.name = name;
 		this.lifePoints = lifePoints;
 		this.attackStrength = attackStrength;
@@ -37,7 +56,7 @@ public class Pokemon {
 		this.type = type;
 		this.capacity = capacity;
 	}
-
+	
 
 	
 	//Constructor empty
@@ -48,6 +67,7 @@ public class Pokemon {
 	
 	
 	//Getters and Setters
+	
 	public int getId() {
 		return id;
 	}
@@ -108,22 +128,22 @@ public class Pokemon {
 	}
 
 
-	public String getType() {
+	public TypesEnum getType() {
 		return type;
 	}
 
 
-	public void setType(String type) {
+	public void setType(TypesEnum type) {
 		this.type = type;
 	}
 
 
-	public int getCapacity() {
+	public Capacity getCapacity() {
 		return capacity;
 	}
 
 
-	public void setCapacity(int capacity) {
+	public void setCapacity(Capacity capacity) {
 		this.capacity = capacity;
 	}
 
@@ -135,6 +155,16 @@ public class Pokemon {
 		return "Pokemon [id=" + id + ", name=" + name + ", lifePoints=" + lifePoints + ", attackStrength="
 				+ attackStrength + ", defenceStrength=" + defenceStrength + ", speed=" + speed + ", type=" + type
 				+ ", capacity=" + capacity + "]";
+	}
+
+
+	public int getIdCapacity() {
+		return idCapacity;
+	}
+
+
+	public void setIdCapacity(int idCapacity) {
+		this.idCapacity = idCapacity;
 	}
 	
 	

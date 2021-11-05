@@ -3,13 +3,16 @@ package beans;
 public class Capacity {
 	
 	//Attributes
-	int id;
-	String name;
-	int power;
-	TypesEnum type;
 	
-	//Constructor
+	private int id;
+	private String name;
+	private int power;
+	private TypesEnum type;
+	
+
+	
 	public Capacity(int id, String name, int power, TypesEnum type) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.power = power;
@@ -17,12 +20,17 @@ public class Capacity {
 	}
 
 	
-	//Constructor without id
+
+
 	public Capacity(String name, int power, TypesEnum type) {
+		super();
 		this.name = name;
 		this.power = power;
 		this.type = type;
 	}
+
+
+
 
 	//Constructor empty
 	public Capacity() {

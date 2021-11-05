@@ -20,7 +20,7 @@
 			<img alt="image-picachu" src="https://o.remove.bg/downloads/a200bc01-9f78-4ccd-a55f-1746fae13f3a/image-removebg-preview.png">
 		</div>
 
-	<form method="post" action="create-pokemon?done=true">
+	<form class="formulaire" method="post" action="create-pokemon?done=true">
 
 			<div class="formulaire-div">
 				<label for="name">Nom : </label>
@@ -56,7 +56,7 @@
     
     <c:if test="${done == true }">
 	    <div>
-		${capacityList }
+		
 			<form method="POST" action="create-pokemon?finished=true">
 				<label for="capacity">Capacité : </label>
 				<select>

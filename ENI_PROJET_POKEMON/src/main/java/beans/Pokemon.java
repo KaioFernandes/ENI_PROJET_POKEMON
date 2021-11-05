@@ -9,13 +9,13 @@ public class Pokemon {
 	private int attackStrength;
 	private int defenceStrength;
 	private int speed;
-	private TypesEnum type;
+	private String type;
 	private Capacity capacity;
 	private int idCapacity;
 	
 	
 	//Constructeur idCapacity
-	public Pokemon(String name, int lifePoints, int attackStrength, int defenceStrength, int speed, TypesEnum type,
+	public Pokemon(String name, int lifePoints, int attackStrength, int defenceStrength, int speed, String type,
 			int idCapacity) {
 		super();
 		this.name = name;
@@ -29,8 +29,8 @@ public class Pokemon {
 
 
 	//Constructor
-	public Pokemon(int id, String name, int lifePoints, int attackStrength, int defenceStrength, int speed, TypesEnum type,
-			Capacity capacity) {
+	public Pokemon(int id, String name, int lifePoints, int attackStrength, int defenceStrength, int speed, String type,
+			int idCapacity) {
 		this.id = id;
 		this.name = name;
 		this.lifePoints = lifePoints;
@@ -38,7 +38,7 @@ public class Pokemon {
 		this.defenceStrength = defenceStrength;
 		this.speed = speed;
 		this.type = type;
-		this.capacity = capacity;
+		this.idCapacity = idCapacity;
 	}
 	
 
@@ -46,7 +46,7 @@ public class Pokemon {
 
 
 	//Constructor without id
-	public Pokemon(String name, int lifePoints, int attackStrength, int defenceStrength, int speed, TypesEnum type,
+	public Pokemon(String name, int lifePoints, int attackStrength, int defenceStrength, int speed, String type,
 			Capacity capacity) {
 		this.name = name;
 		this.lifePoints = lifePoints;
@@ -128,12 +128,12 @@ public class Pokemon {
 	}
 
 
-	public TypesEnum getType() {
+	public String getType() {
 		return type;
 	}
 
 
-	public void setType(TypesEnum type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

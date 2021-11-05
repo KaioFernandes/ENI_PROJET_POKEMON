@@ -1,9 +1,11 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import beans.Capacity;
 import beans.Pokemon;
-import beans.TypesEnum;
 import dao.PokemonDAO;
 import dao.PokemonDAOImpl;
 import jakarta.servlet.ServletException;
@@ -11,6 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import services.CapacityService;
+import services.CapacityServiceImpl;
 import services.PokemonService;
 import services.PokemonServiceImpl;
 
@@ -32,7 +36,7 @@ public class CreatePokemon extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/create-pokemon.jsp").forward(request, response);
 	}
 
@@ -40,28 +44,38 @@ public class CreatePokemon extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-	
 		
 		PokemonService pokemonService = new PokemonServiceImpl();
 		Pokemon pokemon = new Pokemon();
-		
-		//String pseudo = request.getParameter("pseudo");
 		
 		pokemon.setName(request.getParameter("name"));
 		pokemon.setLifePoints(Integer.parseInt(request.getParameter("life_points")));
 		pokemon.setAttackStrength(Integer.parseInt(request.getParameter("attack_strength")));
 		pokemon.setDefenceStrength(Integer.parseInt(request.getParameter("defence_strength")));
 		pokemon.setSpeed(Integer.parseInt(request.getParameter("speed")));
-		pokemon.setType(TypesEnum.valueOf(request.getParameter("type")));
-		pokemon.setIdCapacity(Integer.parseInt(request.getParameter("capacity")));
-
+		pokemon.setType(request.getParameter("type"));
 		
-		pokemonService.create(pokemon);
 		
-	//	PokemonService pokemonService = new PokemonServiceImpl();
-	//	pokemonService.create(new Pokemon("toto", 10, 100, 50, 20, TypesEnum.FIRE,1));
+		
+		CapacityService capacityService = new CapacityServiceImpl();
+		List<Capacity> capacityList = capacityService.findAll();
+		List<Capacity> filteredList = new ArrayList<Capacity>();
+		for (Capacity capacity : capacityList) {
+			if(capacity.getType().equalsIgnoreCase(pokemon.getType())) {
+				filteredList.add(capacity);
+			}
+				
+		}
+		System.out.println(filteredList);
+		
+		request.setAttribute("capacityList", filteredList);
+		request.setAttribute("done", request.getParameter("done"));
+		
+		if(request.getParameter("finished") != null && request.getParameter("finished").equals(true)) {
+			pokemon.setType(request.getParameter("type"));
+			pokemonService.create(pokemon);
+			
+		}
 		
 		System.out.println("pokemon crée");
 		doGet(request, response);

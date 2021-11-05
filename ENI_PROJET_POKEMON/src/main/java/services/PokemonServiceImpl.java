@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import beans.Pokemon;
 import dao.PokemonDAO;
 import dao.PokemonDAOImpl;
@@ -19,5 +21,12 @@ public class PokemonServiceImpl implements PokemonService{
 	public String delete(int id) {
 		PokemonDAO pokemonDAO = new PokemonDAOImpl();
 		return pokemonDAO.delete(id);
+	}
+
+
+	@Override
+	public List<Pokemon> findAll() {
+		PokemonDAO pokemonDAO = new PokemonDAOImpl();
+		return pokemonDAO.findAll();
 	}
 }

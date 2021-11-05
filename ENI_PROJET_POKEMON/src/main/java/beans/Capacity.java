@@ -3,13 +3,16 @@ package beans;
 public class Capacity {
 	
 	//Attributes
+	
 	private int id;
 	private String name;
 	private int power;
 	private String type;
 	
-	//Constructor
+
+	
 	public Capacity(int id, String name, int power, String type) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.power = power;
@@ -17,12 +20,17 @@ public class Capacity {
 	}
 
 	
-	//Constructor without id
+
+
 	public Capacity(String name, int power, String type) {
+		super();
 		this.name = name;
 		this.power = power;
 		this.type = type;
 	}
+
+
+
 
 	//Constructor empty
 	public Capacity() {
@@ -67,8 +75,8 @@ public class Capacity {
 	}
 
 
-	public void setType(String type) {
-		this.type = type;
+	public void setType(String typesEnum) {
+		this.type = typesEnum;
 	}
 
 
@@ -76,7 +84,7 @@ public class Capacity {
 	//toString
 	@Override
 	public String toString() {
-		return "Capacities [id=" + id + ", name=" + name + ", power=" + power + ", type=" + type + "]";
+		return "Capacity [id=" + id + ", name=" + name + ", power=" + power + ", type=" + type.toString() + "]";
 	}
 	
 	

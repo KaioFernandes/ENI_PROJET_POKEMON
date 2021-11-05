@@ -7,11 +7,11 @@ public class Capacity {
 	private int id;
 	private String name;
 	private int power;
-	private TypesEnum type;
+	private String type;
 	
 
 	
-	public Capacity(int id, String name, int power, TypesEnum type) {
+	public Capacity(int id, String name, int power, String type) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -22,7 +22,7 @@ public class Capacity {
 	
 
 
-	public Capacity(String name, int power, TypesEnum type) {
+	public Capacity(String name, int power, String type) {
 		super();
 		this.name = name;
 		this.power = power;
@@ -70,12 +70,12 @@ public class Capacity {
 	}
 
 
-	public TypesEnum getType() {
+	public String getType() {
 		return type;
 	}
 
 
-	public void setType(TypesEnum typesEnum) {
+	public void setType(String typesEnum) {
 		this.type = typesEnum;
 	}
 

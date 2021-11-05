@@ -1,9 +1,11 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import beans.Pokemon;
 
@@ -72,6 +74,43 @@ public class PokemonDAOImpl implements PokemonDAO{
 			return "La supression ne s'est pas bien passée";
 		}
 			
+	}
+
+	@Override
+	public List<Pokemon> findAll() {
+		System.out.println("[UserDAOImpl findAll]");
+		List<Pokemon> pokemonList = new ArrayList<Pokemon>();
+		
+		Connection connection = DAOUtil.getConnection();
+		
+		String request = "SELECT * FROM pokemons";
+		
+		try {
+			PreparedStatement prepareStmt = connection.prepareStatement(request);
+			ResultSet resultSet = prepareStmt.executeQuery();
+			
+			while(resultSet.next()) {
+				Pokemon pokemon = new Pokemon(
+					resultSet.getInt("id"),
+					resultSet.getString("name"),
+					resultSet.getInt("life_points"),
+					resultSet.getInt("attack_strength"),
+					resultSet.getInt("defence_strength"),
+					resultSet.getInt("speed"),
+					resultSet.getString("type"),
+					resultSet.getInt("capacity")
+				);
+				System.out.println(pokemon);
+				pokemonList.add(pokemon);
+			}
+			
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return pokemonList;
+		
 	}
 
 }

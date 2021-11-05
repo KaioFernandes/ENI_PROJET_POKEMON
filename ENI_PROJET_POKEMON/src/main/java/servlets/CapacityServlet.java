@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Capacity;
-import beans.TypesEnum;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -35,7 +34,7 @@ public class CapacityServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		if( (List<Capacity>) session.getAttribute("capacityList") == null) {
+		if( request.getAttribute("capacityList") == null) {
 			List<Capacity> capacityList = new ArrayList<Capacity>();
 			session.setAttribute("capacityList", capacityList);
 		}
@@ -55,17 +54,18 @@ public class CapacityServlet extends HttpServlet {
 		capacity.setName(request.getParameter("name"));
 		capacity.setPower(Integer.valueOf(request.getParameter("power")));
 		System.out.println("capacityType de la requette : " + request.getParameter("capacityType"));
-		String type = request.getParameter("capacityType");
 		
-		System.out.println(type);
-		
-		capacity.setType(TypesEnum.valueOf(type));
+		capacity.setType(request.getParameter("capacityType"));
 	
 		
 		//System.out.println(capacity);
 		capacityService.create(capacity);
+		System.out.println(capacity);
+		
 		
 		capacityList.add(capacity);
+		
+		request.setAttribute("capacityList", capacityList);
 		
 		//TODO: condition pour désactiver le lien de création de pokémon avant d'avoir 5? capacités minimum ?
 		

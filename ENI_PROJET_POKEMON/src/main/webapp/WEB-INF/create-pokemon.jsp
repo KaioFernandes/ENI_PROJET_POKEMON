@@ -11,7 +11,7 @@
 		<fmt:message key="msg.pokemon.title"></fmt:message>
 	</h2>
 	
-	<form method="post" action="">
+	<form method="post" action="create-pokemon?done=true">
 		<div>
 			<label for="name">Nom : </label>
 	    	<input type="text" id="name" name="name" value="name" required />
@@ -43,13 +43,28 @@
 		</div>
     	
     	
-    	<div>
-			<label for="capacity">Capacité : </label>
-    		<input type="text" id="capacity" name="capacity" value="capacity" required />
-    	</div>
     
     	<button type="submit" >Creer le pokemon</button>
     </form>
+    
+    <c:if test="${done == true }">
+	    <div>
+		${capacityList }
+			<form method="POST" action="create-pokemon?finished=true">
+				<label for="capacity">Capacité : </label>
+				<select>
+		    		<c:forEach items="${capacityList }" var="capacity">
+		    				<option value="${capacity.id}">
+		    					<c:out value="${capacity.name }"></c:out>
+		    					<c:out value="${capacity.power }"></c:out>
+		    					<c:out value="${capacity.type }"></c:out>
+		    				</option>
+		    		</c:forEach>
+		    	</select>
+	    		<button type="submit"><fmt:message key="msg.pokemon.add.capacity"></fmt:message></button>
+	    	</form>
+		</div>
+	</c:if>
 	
 </body>
 </html>

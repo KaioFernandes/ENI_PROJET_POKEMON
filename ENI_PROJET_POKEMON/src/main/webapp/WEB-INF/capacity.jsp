@@ -3,6 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title><fmt:message key="msg.capacity.title"></fmt:message></title>
+<style><%@ include file="/ressources/styles/style.css" %></style>
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>

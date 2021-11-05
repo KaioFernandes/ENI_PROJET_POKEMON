@@ -1,5 +1,7 @@
 <header>
-	<h1><fmt:message key="msg.header.headline"></fmt:message></h1>
+	<h1>
+	<img class="header-img" alt="" src="https://o.remove.bg/downloads/acd1c905-4b8d-43fd-893e-ee51c8f39670/image-removebg-preview.png">
+	<fmt:message key="msg.header.headline"></fmt:message></h1>
 	<nav>
 		<ul>
 			<li>

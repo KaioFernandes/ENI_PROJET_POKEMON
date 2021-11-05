@@ -1,15 +1,15 @@
 package beans;
 
-public class Capacities {
+public class Capacity {
 	
 	//Attributes
-	int id;
-	String name;
-	int power;
-	String type;
+	private int id;
+	private String name;
+	private int power;
+	private String type;
 	
 	//Constructor
-	public Capacities(int id, String name, int power, String type) {
+	public Capacity(int id, String name, int power, String type) {
 		this.id = id;
 		this.name = name;
 		this.power = power;
@@ -18,14 +18,14 @@ public class Capacities {
 
 	
 	//Constructor without id
-	public Capacities(String name, int power, String type) {
+	public Capacity(String name, int power, String type) {
 		this.name = name;
 		this.power = power;
 		this.type = type;
 	}
 
 	//Constructor empty
-	public Capacities() {
+	public Capacity() {
 	}
 
 

@@ -11,8 +11,9 @@ public class PokemonDAOImpl implements PokemonDAO{
 
 	@Override
 	public String create(Pokemon pokemonToCreate) {
+		
 		// Etape 1 : Connexion à la BDD
-		Connection connection = DAOUtil.getConnection();
+		Connection connection = DAOUtil.getConnection();				
 		
 		// Etape 2 : Préparation de notre requete
 		String request = "INSERT INTO pokemon (name, life_points, attack_strength, defence_strength, speed, type, capacity) VALUES (?,?,?,?,?,?,?)";
@@ -22,13 +23,14 @@ public class PokemonDAOImpl implements PokemonDAO{
 			// Préparation
 			PreparedStatement prepareStmt;
 			prepareStmt = connection.prepareStatement(request);
+			
 			prepareStmt.setString(1, pokemonToCreate.getName()); // 1er ?
 			prepareStmt.setInt(2, pokemonToCreate.getLifePoints()); // 2eme ?
 			prepareStmt.setInt(3, pokemonToCreate.getAttackStrength()); // 3eme ?
 			prepareStmt.setInt(4, pokemonToCreate.getDefenceStrength());
 			prepareStmt.setInt(5, pokemonToCreate.getSpeed());
-			prepareStmt.setString(6, pokemonToCreate.getType());
-			prepareStmt.setInt(7, pokemonToCreate.getCapacity());
+			prepareStmt.setString(6, pokemonToCreate.getType().toString());
+			prepareStmt.setInt(7, pokemonToCreate.getIdCapacity());
 			
 			// Exécuter la requete
 			prepareStmt.executeUpdate(); // Car on fait une modification
@@ -40,6 +42,36 @@ public class PokemonDAOImpl implements PokemonDAO{
 			e.printStackTrace();
 			return "La création ne s'est pas bien passée";
 		}
+	}
+
+	@Override
+	public String delete(int idToDelete) {
+		// Etape 1 : Connexion à la BDD
+		Connection connection = DAOUtil.getConnection();
+		
+		// Etape 2 : Préparation de notre requete
+		String request = "DELETE FROM Pokemon WHERE id = ?";
+		
+		try {
+			// Etape 3 : Exécuter la requete
+			// Préparation
+			PreparedStatement prepareStmt;
+			prepareStmt = connection.prepareStatement(request);
+			
+			prepareStmt.setInt(1, idToDelete); // 1er ?
+			
+			// Exécuter la requete
+			prepareStmt.executeUpdate(); // Car on fait une modification
+			
+			connection.close();
+			
+			return "La supression s'est bien passée";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "La supression ne s'est pas bien passée";
+		}
+			
 	}
 
 }

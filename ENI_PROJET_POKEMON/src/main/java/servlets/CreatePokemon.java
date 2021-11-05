@@ -42,9 +42,26 @@ public class CreatePokemon extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		PokemonService pokemonService = new PokemonServiceImpl();
+	
 		
-		pokemonService.create(new Pokemon("toto", 10, 100, 50, 20, TypesEnum.FIRE,1));
+		PokemonService pokemonService = new PokemonServiceImpl();
+		Pokemon pokemon = new Pokemon();
+		
+		//String pseudo = request.getParameter("pseudo");
+		
+		pokemon.setName(request.getParameter("name"));
+		pokemon.setLifePoints(Integer.parseInt(request.getParameter("life_points")));
+		pokemon.setAttackStrength(Integer.parseInt(request.getParameter("attack_strength")));
+		pokemon.setDefenceStrength(Integer.parseInt(request.getParameter("defence_strength")));
+		pokemon.setSpeed(Integer.parseInt(request.getParameter("speed")));
+		pokemon.setType(TypesEnum.valueOf(request.getParameter("type")));
+		pokemon.setIdCapacity(Integer.parseInt(request.getParameter("capacity")));
+
+		
+		pokemonService.create(pokemon);
+		
+	//	PokemonService pokemonService = new PokemonServiceImpl();
+	//	pokemonService.create(new Pokemon("toto", 10, 100, 50, 20, TypesEnum.FIRE,1));
 		
 		System.out.println("pokemon crée");
 		doGet(request, response);
